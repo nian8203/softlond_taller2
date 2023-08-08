@@ -11,7 +11,44 @@ public class CreacionEmpresas {
 //		crearEmpresas().forEach(e -> System.out.println(e.toString()));
 		return crearEmpresas();
 	}
-
+	
+	
+	private List<Empresa> crearEmpresas(){
+		List<Empresa> empresas = new ArrayList<>();
+		List<Cliente> clientes = crearEmpleados();
+		List<Cliente> c1 = new ArrayList<>();
+		List<Cliente> c2 = new ArrayList<>();
+		List<Cliente> c3 = new ArrayList<>();
+		List<Cliente> c4 = new ArrayList<>();
+		Empresa e1 = new Empresa();
+		Empresa e2 = new Empresa();
+		Empresa e3 = new Empresa();
+		Empresa e4 = new Empresa();
+		
+		for (int i = 0; i < clientes.size(); i++) {
+			if (i <= 1) {
+				c1.add(clientes.get(i));
+				e1 = new Empresa("Empresa_1", c1);
+			}else if (i > 1 && i <=4) {
+				c2.add(clientes.get(i));
+				e2 = new Empresa("Empresa_2", c2);
+			}else if (i > 4 && i <= 8) {
+				c3.add(clientes.get(i));
+				e3 = new Empresa("Empresa_3", c3);
+			}else {		
+				c4.add(clientes.get(i));
+				e4 = new Empresa("Empresa_4", c4);
+			}
+		}
+		empresas.add(e1);	
+		empresas.add(e2);
+		empresas.add(e3);
+		empresas.add(e4);
+		return empresas;
+		
+	}
+	
+	
 	private List<Cliente> crearEmpleados() {
 		List<Cliente> empleados = new ArrayList<>();
 		Cliente c1 = new Cliente("juan", "123456");
@@ -41,42 +78,6 @@ public class CreacionEmpresas {
 		empleados.add(c12);
 		
 		return empleados;
-	}
-	
-	
-	private List<Empresa> crearEmpresas(){
-		List<Empresa> empresas = new ArrayList<>();
-		List<Cliente> clientes = crearEmpleados();
-		List<Cliente> c1 = new ArrayList<>();
-		List<Cliente> c2 = new ArrayList<>();
-		List<Cliente> c3 = new ArrayList<>();
-		List<Cliente> c4 = new ArrayList<>();
-		Empresa e1 = new Empresa();
-		Empresa e2 = new Empresa();
-		Empresa e3 = new Empresa();
-		Empresa e4 = new Empresa();
-		
-		for (int i = 0; i < clientes.size(); i++) {
-			if (i <= 2) {
-				c1.add(clientes.get(i));
-				e1 = new Empresa("Empresa_1 = ", c1);
-			}else if (i > 2 && i <=5) {
-				c2.add(clientes.get(i));
-				e2 = new Empresa("Empresa_2 = ", c2);
-			}else if (i > 5 || i <= 9) {
-				c3.add(clientes.get(i));
-				e3 = new Empresa("Empresa_3 = ", c2);
-			}else {
-				c4.add(clientes.get(i));
-				e4 = new Empresa("Empresa_3 = ", c2);
-			}
-		}
-		empresas.add(e1);	
-		empresas.add(e2);
-		empresas.add(e3);
-//		System.out.println(empresas);
-		return empresas;
-		
 	}
 	
 	

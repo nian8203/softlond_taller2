@@ -16,6 +16,11 @@ public class Habitacion {
 		this.numero = numero;
 		this.disponible = disponible;
 	}
+	
+	public Habitacion(String numero) {
+		super();
+		this.numero = numero;
+	}
 
 	public String getNumero() {
 		return numero;
@@ -31,6 +36,11 @@ public class Habitacion {
 
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
+	}
+
+	@Override
+	public String toString() {
+		return "Habitacion [numero=" + numero + ", disponible=" + disponible + "]";
 	}
 
 	
