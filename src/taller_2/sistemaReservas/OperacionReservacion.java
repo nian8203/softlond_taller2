@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 
+import taller_2.models.Cliente;
+import taller_2.models.Empresa;
 import taller_2.models.Habitacion;
 import taller_2.models.Hotel;
 import taller_2.models.Reservacion;
@@ -14,22 +16,52 @@ import taller_2.models.Reservacion;
 public class OperacionReservacion {
 
 	private final CreacionHoteles hoteles;
-	private final CreacionEmpresas empresas;
+	private final OperacionesHabitacion habitaciones;
+	private final OperacionEmpresa operacionEmpresa;
+	List<Reservacion> reservaciones = new ArrayList<>();
 	
 	public OperacionReservacion() {
-		this.empresas = new CreacionEmpresas();
 		this.hoteles = new CreacionHoteles();
+		this.habitaciones = new OperacionesHabitacion();
+		this.operacionEmpresa = new OperacionEmpresa();
 	}
 	
-	public void listadoHabitaciones() {
-		Hotel hotel = new Hotel();
-		System.out.println(hotel.getNombre());
-		System.out.println(hotel.getHabitaciones());
-//		listadoHabitaciones();
+	public void cicloCrearReserva() {
+        String hotel = crearReserva();
+        String habitacion = habitaciones.listadoHabitacionesDisponibles(hotel);
+        Empresa empresa = operacionEmpresa.agregarEmpresa();
+        Reservacion reservacion = new Reservacion(empresa, hotel, habitacion);
+        reservaciones.add(reservacion);  
+        System.out.println("\n=======================================");        
+        reservaciones.forEach(r -> System.out.println(r.toString()));
+        
+    }	
+	
+	public void elininarReserva() {
+		List<Reservacion> listadoReservciones = new ArrayList<>();
+		
+		String[] reserevasCliente = listadoReservciones.stream()
+														.map(Reservacion::getEmpresa)
+														.toArray(String[]::new);
+		
+		String seleccion = (String) JOptionPane.showInputDialog(
+		        null,
+		        "Selecciona una reserva:",
+		        "Seleccione Reserva",
+		        JOptionPane.PLAIN_MESSAGE,
+		        null,
+		        reserevasCliente,
+		        reserevasCliente[0] 
+		);
+		
+		Reservacion reservacion = listadoReservciones.stream().filter(r -> r.getEmpresa().equals(seleccion)).findFirst().orElse(null);
+		System.out.println(reservacion.toString());
 	}
 	
 	
-	public String crearReserva2() {
+	
+	private String crearReserva() {
+
 		List<Hotel> listadoHoteles = hoteles.listadohoteles();
 
 		String[] nombresHoteles = listadoHoteles.stream()
@@ -43,40 +75,22 @@ public class OperacionReservacion {
 		        JOptionPane.PLAIN_MESSAGE,
 		        null,
 		        nombresHoteles,
-		        nombresHoteles[0]  // Valor predeterminado (primer hotel)
+		        nombresHoteles[0] 
 		);
 		
-		System.out.println(seleccion);
+//		System.out.println(seleccion);
 		return seleccion;
 	}
 	
-	public String habitacionesDisponibles() {
-		String nombreHotel = crearReserva2();
-		Hotel hotel = hoteles.listadohoteles().stream().filter(h -> h.getNombre().equals(nombreHotel)).findFirst().orElse(null);
-		System.out.println(hotel.toString());
-		Set<Habitacion> listadoHabitaciones = hotel.getHabitaciones();
-		String[] numeroHabitacion = listadoHabitaciones.stream()
-				.map(Habitacion::getNumero)
-				.toArray(String[]::new);
-		
-		String seleccion = (String) JOptionPane.showInputDialog(
-		        null,
-		        "Selecciona un hotel:",
-		        "Seleccione Hotel",
-		        JOptionPane.PLAIN_MESSAGE,
-		        null,
-		        numeroHabitacion,
-		        numeroHabitacion[0]  // Valor predeterminado (primer hotel)
-		);
-		Habitacion habitacionCambiarEstado = listadoHabitaciones.stream().filter(h -> h.getNumero().equals(seleccion)).findFirst().orElse(null);
-		habitacionCambiarEstado.setDisponible(false);
-		listadoHabitaciones.forEach(h -> System.out.println(h.toString()));
-		System.out.println("seleccion habitacion = "+seleccion);
-		List<Habitacion> habitacionesDisponibles = listadoHabitaciones.stream()
-		        .filter(Habitacion::isDisponible) // Filtrar habitaciones disponibles
-		        .collect(Collectors.toList());
 
-		habitacionesDisponibles.forEach(System.out::println);
-		return seleccion;
-	}
+
+
+
+
+
+
+		
+
+	
+
 }

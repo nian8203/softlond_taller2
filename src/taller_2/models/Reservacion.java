@@ -1,44 +1,51 @@
 package taller_2.models;
 
-import java.util.UUID;
-
 public class Reservacion {
-	
-	//nombre hotel
 
-	private Cliente cliente;
-	private Habitacion habitacion;
-	private Hotel hotel;
+	private Empresa empresa;
+	private String hotel;
+	private String habitacion;
 
 	public Reservacion() {
 		super();
 	}
 
-	public Reservacion(Cliente cliente, Habitacion habitacion) {
+	public Reservacion(Empresa empresa, String hotel, String habitacion) {
 		super();
-		this.cliente = cliente;
+		this.empresa = empresa;
+		this.hotel = hotel;
 		this.habitacion = habitacion;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Habitacion getHabitacion() {
+	public String getHabitacion() {
 		return habitacion;
 	}
 
-	public void setHabitacion(Habitacion habitacion) {
+	public void setHabitacion(String habitacion) {
 		this.habitacion = habitacion;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(String hotel) {
+		this.hotel = hotel;
 	}
 
 	@Override
 	public String toString() {
-		return "Reservacion []";
+		return "Reservacion [empresa=" + empresa + ", hotel=" + hotel + ", habitacion=" + habitacion + "]";
 	}
+
+	
 
 }

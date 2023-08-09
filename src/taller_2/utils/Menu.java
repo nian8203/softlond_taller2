@@ -5,13 +5,14 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import taller_2.models.Alumno;
+import taller_2.sistemaReservas.OperacionReservacion;
 
 public class Menu {
 
-	private static Scanner sc = new Scanner(System.in);
 	private final SistemaAlumnos sistemaAlumnos;
 	private final Conversion conversion;
 	private final Operaciones operaciones;
+	private final OperacionReservacion operacionReservacion;
 
 //	public Menu(SistemaAlumnos registroAlumnos, Conversion conversion) {
 //		this.sistemaAlumnos = registroAlumnos;
@@ -22,43 +23,40 @@ public class Menu {
 		this.sistemaAlumnos = new SistemaAlumnos();
 		this.conversion = new Conversion();
 		this.operaciones = new Operaciones();
+		this.operacionReservacion = new OperacionReservacion();
 	}
 
 	public void menu() {
 		int opcion;
 		do {
-			System.out.println("\n===== MENU PRINCIPAL =====");
-			System.out.println("**Seleccione una opción**");
-			System.out.println("1- Registros de alumnos");
-			System.out.println("2- Conversor de monedas");
-			System.out.println("3- Calculadora simple");
-			System.out.println("4- Sistema reservas hotel");
-			System.out.println("5- Salir");
-			System.out.println("==========================\n");
+			String menuMessage = "===== MENU PRINCIPAL =====\n" + "**Seleccione una opción**\n"
+					+ "1- Registros de alumnos\n" + "2- Conversor de monedas\n" + "3- Calculadora simple\n"
+					+ "4- Sistema reservas hotel\n" + "5- Salir\n" + "==========================\n";
 
-			System.out.print("Ingrese una opción: ");
-			opcion = sc.nextInt();
-			subMenu(opcion);
-			break;
-			// seleccionMenuPrincipal(opcion);
+			String opcionStr = JOptionPane.showInputDialog(null, menuMessage + "Ingrese una opción:", "Menú Principal",
+					JOptionPane.PLAIN_MESSAGE);
+			opcion = Integer.parseInt(opcionStr);
+
+			switch (opcion) {
+			case 1:
+				menuAlumno();
+				break;
+			case 2:
+				menuConversiones();
+				break;
+			case 3:
+				menuCalculadora();
+				break;
+			case 4:
+				menuReservacion();
+				break;
+			case 5:
+				break;
+			default:
+				break;
+			}
+
 		} while (opcion != 5);
-		sc.close();
-	}
-
-	private void subMenu(int opcion) {
-		// Código del método seleccionMenuPrincipal
-
-		switch (opcion) {
-		case 1:
-			menuAlumno();
-			break;
-		case 2:
-
-			break;
-
-		default:
-			break;
-		}
 	}
 
 	public void menuAlumno() {
@@ -131,7 +129,8 @@ public class Menu {
 
 		do {
 			String menuMsg = "===== MENU CALCULADORA =====\n" + "**Seleccione una opción**\n" + "1- Suma\n"
-					+ "2- Resta\n" + "3- Multiplicación\n" + "4- División\n" + "5- Salir\n" + "==============================\n";
+					+ "2- Resta\n" + "3- Multiplicación\n" + "4- División\n" + "5- Salir\n"
+					+ "==============================\n";
 
 			String opcionStr = JOptionPane.showInputDialog(null, menuMsg);
 			opcion = Integer.parseInt(opcionStr);
@@ -161,4 +160,33 @@ public class Menu {
 		JOptionPane.showMessageDialog(null, "Programa finalizado", "Fin", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	public void menuReservacion() {
+		int opcion;
+		do {
+			String menuMessage = "===== MENU RESERVACIONES =====\n" 
+					+ "**Seleccione una opción**\n"
+					+ "1- Crear reservas\n" 
+					+ "2- Eliminar reservas\n" 
+					+ "3- Habitaciones disponibles" 
+					+ "3- Salir\n" 
+					+ "==============================\n";
+
+			String opcionStr = JOptionPane.showInputDialog(null, menuMessage + "Ingrese una opción:", "Menú Principal",
+					JOptionPane.PLAIN_MESSAGE);
+			opcion = Integer.parseInt(opcionStr);
+
+			switch (opcion) {
+			case 1:
+				operacionReservacion.cicloCrearReserva();
+				break;
+			case 2:
+				operacionReservacion.elininarReserva();
+				break;
+			case 3:
+				break;
+			default:
+				break;
+			}
+		} while (opcion != 3);
+	}
 }
