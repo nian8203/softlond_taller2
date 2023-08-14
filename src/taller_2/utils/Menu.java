@@ -167,7 +167,6 @@ public class Menu {
 					+ "**Seleccione una opción**\n"
 					+ "1- Crear reservas\n" 
 					+ "2- Eliminar reservas\n" 
-					+ "3- Habitaciones disponibles" 
 					+ "3- Salir\n" 
 					+ "==============================\n";
 
