@@ -34,7 +34,7 @@ public class DisponibilidadHabitaciones {
 	        String[] numeroHabitacion = listHabitacionePorHotel.stream().map(Habitacion::getNumero).toArray(String[]::new);
 
 	        String seleccion = (String) JOptionPane.showInputDialog(null, "Selecciona un habitacion:",
-	                "Seleccione Hotel", JOptionPane.PLAIN_MESSAGE, null, numeroHabitacion, numeroHabitacion[0]);
+	                "Habitaciones", JOptionPane.PLAIN_MESSAGE, null, numeroHabitacion, numeroHabitacion[0]);
 
 	        response = seleccion;
 	        Habitacion habitacion = listHabitacionePorHotel.stream().filter(h -> h.getNumero().equals(seleccion))

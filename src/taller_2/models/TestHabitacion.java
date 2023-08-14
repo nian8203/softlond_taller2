@@ -8,8 +8,12 @@ import taller_2.sistemaReservas.CreacionHoteles;
 
 public class TestHabitacion {
 
-	 private final CreacionHoteles creacionHoteles = CreacionHoteles.getInstance();
+	 private final CreacionHoteles creacionHoteles;
 	    private Hotel hotelSeleccionado;
+	    
+	    public TestHabitacion() {
+	    	this.creacionHoteles = new CreacionHoteles();
+	    }
 
 	    public void seleccionHotel() {
 	        creacionHoteles.listadohoteles().forEach(

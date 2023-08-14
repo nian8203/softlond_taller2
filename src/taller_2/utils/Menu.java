@@ -177,10 +177,10 @@ public class Menu {
 
 			switch (opcion) {
 			case 1:
-				operacionReservacion.cicloCrearReserva();
+				operacionReservacion.crearReserva();
 				break;
 			case 2:
-				operacionReservacion.elininarReserva();
+				operacionReservacion.eliminarReserva();
 				break;
 			case 3:
 				break;
